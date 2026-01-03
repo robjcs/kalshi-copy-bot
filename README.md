@@ -1,5 +1,7 @@
 # Kalshi Copy Bot
 
+![screenshot of web interface](kalshi-bot.jpg)
+
 A web-based application for monitoring and copying trades from target Kalshi users.
 
 ## Setup
