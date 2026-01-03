@@ -33,5 +33,8 @@ For demo mode: `python app.py --demo`
 Set the following environment variables in `.env`:
 
 - `KALSHI_EMAIL` - Kalshi account email
-- `KALSHI_PASSWORD` - Kalshi account password  
+- `KALSHI_PASSWORD` - Kalshi account password
 - `TARGET_USER_ID` - User ID to monitor (optional)
+- `MAX_COPY_AMOUNT` - Maximum number of contracts to copy per trade (default: 100)
+- `POLLING_INTERVAL_MS` - How often to check for new trades in milliseconds (default: 2000)
+- `AUTO_COPY_ENABLED` - Enable automatic copying of new trades (default: true)

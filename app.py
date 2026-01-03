@@ -173,8 +173,9 @@ class TradingBot:
         self.start_time = datetime.now()
         self.copied_count = 0
         self.is_monitoring = False
-        self.max_copy_amount = 100
-        self.auto_copy_enabled = True
+        self.max_copy_amount = int(os.getenv('MAX_COPY_AMOUNT', '100'))
+        self.auto_copy_enabled = os.getenv('AUTO_COPY_ENABLED', 'true').lower() == 'true'
+        self.polling_interval_ms = int(os.getenv('POLLING_INTERVAL_MS', '2000'))
         self.demo_mode = demo_mode
         self.demo_trades_data = []
         
@@ -428,7 +429,9 @@ def get_status():
         'demo_mode': bot.demo_mode,
         'is_authenticated': bot.client.is_authenticated() if not bot.demo_mode else True,
         'target_user_id': bot.target_user_id,
-        'auto_copy_enabled': bot.auto_copy_enabled
+        'auto_copy_enabled': bot.auto_copy_enabled,
+        'polling_interval_ms': bot.polling_interval_ms,
+        'max_copy_amount': bot.max_copy_amount
     })
 
 @app.route('/api/toggle_auto_copy', methods=['POST'])

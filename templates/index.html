@@ -281,6 +281,10 @@
                 
                 demoMode = status.demo_mode;
                 autoCopyEnabled = status.auto_copy_enabled;
+                pollingInterval = status.polling_interval_ms || 2000;
+                
+                // Start refresh timer with configured interval
+                startRefreshTimer();
                 
                 if (demoMode) {
                     // In demo mode, skip authentication
@@ -302,8 +306,17 @@
             }
         }
         
-        // Update display every second
-        setInterval(refreshTrades, 2000);
+        function startRefreshTimer() {
+            if (refreshTimer) {
+                clearInterval(refreshTimer);
+            }
+            refreshTimer = setInterval(refreshTrades, pollingInterval);
+        }
+        
+        let pollingInterval = 2000; // Default value
+        
+        // Update display based on configured interval
+        let refreshTimer;
         
         async function authenticate() {
             const email = document.getElementById('email').value;
